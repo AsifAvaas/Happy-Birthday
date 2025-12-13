@@ -1,38 +1,67 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
+import firstMetImg from "./assets/first met.jpg";
+import secondMetImg from "./assets/second met.jpeg";
+import beautifulImg from "./assets/beautiful.jpg";
+import crush from "./assets/crush.jpeg";
+import loveImg from "./assets/love.jpg";
 
+// Sequence / Best Photos
+import best1 from "./assets/best1.jpg";
+import best2 from "./assets/best2.jpg";
+import best3 from "./assets/best3.jpg";
+import best4 from "./assets/best4.jpg";
+import best5 from "./assets/best5.jpeg"; // Note: .jpeg extension
+
+// Grid / Carousel Photos
+import best6 from "./assets/best6.jpg";
+import best7 from "./assets/best7.jpg";
+import best8 from "./assets/best8.jpg";
+import best9 from "./assets/best9.jpg";
+import tour1 from "./assets/tour1.webp";
+import tour2 from "./assets/tour2.webp";
+import tour3 from "./assets/tour3.webp";
+import ramna1 from "./assets/ramna1.jpg";
+import ramna2 from "./assets/ramn2.jpg";
+import dominos1 from "./assets/dominos1.jpg";
+import dominos2 from "./assets/dominos2.jpg";
+
+// Fairies & Specific Moments
+import redImg from "./assets/red.PNG";
+import blueImg from "./assets/blue.jpeg";
+import pinkCandidate from "./assets/IMG_9461.webp";
+import whiteImg from "./assets/white.PNG";
+import cakeCandidate from "./assets/dominos1.jpg";
+import goldenImg from "./assets/golden.jpg";
 // ============== ASSETS CONFIGURATION ==============
 // Replace these URLs with your actual image and audio paths
 const ASSETS = {
   images: {
-    firstMet:
-      "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800",
-    reallyMet:
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200",
-    beautiful:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800",
-    fallForYou:
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800",
-    seq1: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=600",
-    seq2: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600",
-    seq3: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=600",
-    seq4: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600",
-    seq5: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600",
-    grid1: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=500",
-    grid2: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=500",
-    grid3: "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=500",
-    grid4: "https://images.unsplash.com/photo-1496440737103-cd596325d314?w=500",
-    grid5: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500",
-    grid6: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500",
-    redFairy:
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400",
-    blueFairy:
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400",
-    pinkFairy:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-    sleepingFairy:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400",
+    firstMet: firstMetImg,
+    reallyMet: secondMetImg,
+    beautiful: beautifulImg,
+    crush: crush,
+    ramna1: ramna1,
+    ramna2: ramna2,
+    dominos1: dominos1,
+    dominos2: dominos2,
+    tour1: tour1,
+    tour2: tour2,
+    tour3: tour3,
+    best1: best1,
+    best2: best2,
+    best3: best3,
+    best4: best4,
+    best5: best5,
+    best6: best6,
+    best7: best7,
+    best8: best8,
+    best9: best9,
+    redFairy: redImg,
+    blueFairy: blueImg,
+    pinkFairy: pinkCandidate,
+    sleepingFairy: whiteImg,
     cake: "https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=600",
     finalCouple:
       "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800",
@@ -657,7 +686,7 @@ export default function App() {
               className="w-2/3 md:w-1/2 max-w-xl rounded-2xl shadow-2xl z-10"
             >
               <img
-                src={ASSETS.images.beautiful}
+                src={ASSETS.images.crush}
                 alt="Beautiful"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
@@ -703,29 +732,55 @@ export default function App() {
             </motion.p>
 
             {/* Two images side by side, overlapping slightly */}
-            <div className="relative flex justify-center items-center overflow-x-visible">
+            {/* 1. Change the wrapper from <div> to <motion.div> */}
+            <motion.div
+              className="relative flex justify-center items-center overflow-x-visible"
+              // 2. The PARENT handles the detection
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+            >
               {/* Left image */}
               <motion.img
-                src={ASSETS.images.beautiful}
+                src={ASSETS.images.ramna1}
                 alt="Left"
-                initial={{ x: -200, rotate: -12.5, opacity: 0 }}
-                whileInView={{ x: 0, rotate: -12.5, opacity: 1 }}
-                transition={{ duration: 1.2, type: "spring", stiffness: 120 }}
-                viewport={{ once: false, amount: 0.3 }}
+                // 3. Child uses variants to know what to do
+                variants={{
+                  hidden: { x: -100, rotate: -12.5, opacity: 0 },
+                  visible: {
+                    x: 0,
+                    rotate: -12.5,
+                    opacity: 1,
+                    transition: {
+                      duration: 1.2,
+                      type: "spring",
+                      stiffness: 120,
+                    },
+                  },
+                }}
                 className="w-1/2 max-w-[180px] sm:w-5/12 md:w-1/3 rounded-xl shadow-lg z-10"
               />
 
               {/* Right image */}
               <motion.img
-                src={ASSETS.images.beautiful}
+                src={ASSETS.images.ramna2}
                 alt="Right"
-                initial={{ x: 200, rotate: 12.5, opacity: 0 }}
-                whileInView={{ x: 0, rotate: 12.5, opacity: 1 }}
-                transition={{ duration: 1.2, type: "spring", stiffness: 120 }}
-                viewport={{ once: false, amount: 0.3 }}
+                variants={{
+                  hidden: { x: 100, rotate: 12.5, opacity: 0 },
+                  visible: {
+                    x: 0,
+                    rotate: 12.5,
+                    opacity: 1,
+                    transition: {
+                      duration: 1.2,
+                      type: "spring",
+                      stiffness: 120,
+                    },
+                  },
+                }}
                 className="w-1/2 max-w-[180px] sm:w-5/12 md:w-1/3 rounded-xl shadow-lg z-20"
               />
-            </div>
+            </motion.div>
 
             {/* Next text */}
             <motion.p
@@ -738,155 +793,341 @@ export default function App() {
               to this
             </motion.p>
 
-            {/* Another pair of images */}
-            <div className="relative flex justify-center items-center overflow-x-visible">
+            {/* Two images side by side, overlapping slightly */}
+            {/* 1. Change the wrapper from <div> to <motion.div> */}
+            <motion.div
+              className="relative flex justify-center items-center overflow-x-visible"
+              // 2. The PARENT handles the detection
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              {/* Left image */}
               <motion.img
-                src={ASSETS.images.seq4}
+                src={ASSETS.images.dominos1}
                 alt="Left"
-                initial={{ x: -200, rotate: -12.5, opacity: 0 }}
-                whileInView={{ x: 0, rotate: -12.5, opacity: 1 }}
-                transition={{ duration: 1.2, type: "spring", stiffness: 120 }}
-                viewport={{ once: false, amount: 0.3 }}
+                // 3. Child uses variants to know what to do
+                variants={{
+                  hidden: { x: -100, rotate: -12.5, opacity: 0 },
+                  visible: {
+                    x: 0,
+                    rotate: 12.5,
+                    opacity: 1,
+                    transition: {
+                      duration: 1.2,
+                      type: "spring",
+                      stiffness: 120,
+                    },
+                  },
+                }}
                 className="w-1/2 max-w-[180px] sm:w-5/12 md:w-1/3 rounded-xl shadow-lg z-10"
               />
+
+              {/* Right image */}
               <motion.img
-                src={ASSETS.images.seq5}
+                src={ASSETS.images.dominos2}
                 alt="Right"
-                initial={{ x: 200, rotate: 12.5, opacity: 0 }}
-                whileInView={{ x: 0, rotate: 12.5, opacity: 1 }}
-                transition={{ duration: 1.2, type: "spring", stiffness: 120 }}
-                viewport={{ once: false, amount: 0.3 }}
+                variants={{
+                  hidden: { x: 100, rotate: 12.5, opacity: 0 },
+                  visible: {
+                    x: 0,
+                    rotate: -12.5,
+                    opacity: 1,
+                    transition: {
+                      duration: 1.2,
+                      type: "spring",
+                      stiffness: 120,
+                    },
+                  },
+                }}
                 className="w-1/2 max-w-[180px] sm:w-5/12 md:w-1/3 rounded-xl shadow-lg z-20"
               />
-            </div>
-          </div>
-
-          <div className="min-h-screen flex items-center justify-center">
+            </motion.div>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-6xl text-center px-4"
+              viewport={{ once: false, amount: 0.3 }}
+              className="text-3xl md:text-5xl text-center px-4 font-serif text-purple-900 drop-shadow-lg"
+            >
+              to this
+            </motion.p>
+            {/* TRIFECTA SECTION */}
+            {/* 1. Parent Wrapper handles the viewport trigger */}
+            <motion.div
+              className="relative flex justify-center items-center h-64 sm:h-80 overflow-x-visible"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              {/* --- Left Image (Rotated Left) --- */}
+              <motion.img
+                src={ASSETS.images.tour1}
+                alt="Left"
+                variants={{
+                  hidden: { x: -80, y: 20, rotate: -20, opacity: 0 },
+                  visible: {
+                    x: 20, // Moves slightly right to overlap center
+                    y: 0,
+                    rotate: -15,
+                    opacity: 1,
+                    transition: {
+                      duration: 1.2,
+                      type: "spring",
+                      stiffness: 120,
+                    },
+                  },
+                }}
+                // z-10 puts it behind the center image
+                className="w-1/3 max-w-[160px] rounded-xl shadow-lg z-10 border-2 border-white/50"
+              />
+
+              {/* --- Center Image (Straight & Front) --- */}
+              <motion.img
+                src={ASSETS.images.tour2}
+                alt="Center"
+                variants={{
+                  hidden: { y: 100, opacity: 0, scale: 0.8 },
+                  visible: {
+                    y: -20, // Pops up slightly higher than the others
+                    opacity: 1,
+                    scale: 1.1, // Slightly larger
+                    transition: {
+                      duration: 1.2,
+                      delay: 0.1,
+                      type: "spring",
+                      stiffness: 120,
+                    },
+                  },
+                }}
+                // z-20 ensures it sits ON TOP of the left/right images
+                className="w-1/3 max-w-[160px] rounded-xl shadow-2xl z-20 border-4 border-white"
+              />
+
+              {/* --- Right Image (Rotated Right) --- */}
+              <motion.img
+                src={ASSETS.images.tour3}
+                alt="Right"
+                variants={{
+                  hidden: { x: 80, y: 20, rotate: 20, opacity: 0 },
+                  visible: {
+                    x: -20, // Moves slightly left to overlap center
+                    y: 0,
+                    rotate: 15,
+                    opacity: 1,
+                    transition: {
+                      duration: 1.2,
+                      type: "spring",
+                      stiffness: 120,
+                    },
+                  },
+                }}
+                // z-10 puts it behind the center image
+                className="w-1/3 max-w-[160px] rounded-xl shadow-lg z-10 border-2 border-white/50"
+              />
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-3xl md:text-5xl text-center px-4 font-serif text-purple-900 drop-shadow-lg"
             >
               You slowly consumed my heart
             </motion.p>
           </div>
+          {/* "Best Years" Section with Continuous Carousel */}
+          <div className="py-24 bg-gradient-to-b from-purple-300 via-indigo-300 to-blue-300 overflow-hidden">
+            {/* Text Section */}
+            <div className="flex items-center justify-center mb-12">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-5xl text-center px-4 font-serif text-white drop-shadow-md"
+              >
+                And then you started the best years of my life
+              </motion.p>
+            </div>
 
-          <div className="min-h-screen flex items-center justify-center">
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-6xl text-center px-4"
-            >
-              And then you started the best years of my life
-            </motion.p>
+            {/* Continuous Carousel */}
+            <div className="relative w-full overflow-hidden">
+              {/* We use a transparent gradient mask on the left and right 
+            to make the images fade in/out smoothly at the edges 
+          */}
+              <div className="absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-indigo-300/50 to-transparent z-10" />
+              <div className="absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-blue-300/50 to-transparent z-10" />
+
+              {/* The Moving Track */}
+              <motion.div
+                className="flex gap-4 sm:gap-8 w-max"
+                // We animate x from 0% to -50%.
+                // Because we duplicated the images below, -50% is the exact point
+                // where the second set begins, creating a seamless loop.
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{
+                  repeat: Infinity,
+                  ease: "linear",
+                  duration: 25, // Adjust speed: Lower = Faster, Higher = Slower
+                }}
+              >
+                {/* We map the images TWICE ([...images, ...images]) to create the loop */}
+                {[
+                  ASSETS.images.best1,
+                  ASSETS.images.best2,
+                  ASSETS.images.best3,
+                  ASSETS.images.best4,
+                  ASSETS.images.best5,
+                  ASSETS.images.best6,
+                  ASSETS.images.best7, // Duplicating starts here
+                  ASSETS.images.best8,
+                  ASSETS.images.best9,
+                  // ASSETS.images.best4,
+                  // ASSETS.images.best5,
+                  // ASSETS.images.best6,
+                ].map((img, index) => (
+                  <div
+                    key={index}
+                    className="relative w-48 h-64 sm:w-72 sm:h-96 flex-shrink-0 rounded-2xl overflow-hidden shadow-xl border-4 border-white/30"
+                  >
+                    <img
+                      src={img}
+                      alt={`Memory ${index}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
           </div>
-
-          <HorizontalScroll
-            images={[
-              ASSETS.images.grid1,
-              ASSETS.images.grid2,
-              ASSETS.images.grid3,
-              ASSETS.images.grid4,
-              ASSETS.images.grid5,
-              ASSETS.images.grid6,
-            ]}
-          />
         </section>
       </ChapterObserver>
 
       {/* CHAPTER 5: The Finale */}
       <ChapterObserver chapterIndex={4} onChapterChange={setCurrentChapter}>
-        <section className="bg-gradient-to-b from-purple-900 to-pink-900 pb-32">
-          <div className="min-h-screen flex items-center justify-center">
+        {/* Changed Background to a Deep Royal Night Gradient for the Finale */}
+        <section className="bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 pb-32 overflow-x-hidden text-white">
+          {/* Intro Title */}
+          <div className="min-h-96 flex items-center justify-center">
             <motion.h3
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="text-5xl md:text-7xl text-center px-4"
+              // "Beautiful font" - Serif, italic, tracking wide, distinct color
+              className="text-5xl md:text-7xl text-center px-4 font-serif italic tracking-wider text-purple-200 drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]"
             >
               So finally, I want to say
             </motion.h3>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto px-4 my-32">
+          {/* The Fairy "Zig-Zag" Section */}
+          <div className="flex flex-col items-center gap-32 max-w-2xl mx-auto px-4 my-32">
             {[
               { img: ASSETS.images.redFairy, text: "To my red fairy" },
               { img: ASSETS.images.blueFairy, text: "Blue fairy" },
               { img: ASSETS.images.pinkFairy, text: "Pink fairy" },
               { img: ASSETS.images.sleepingFairy, text: "Sleeping fairy" },
-            ].map((fairy, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.2, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <img
-                  src={fairy.img}
-                  alt={fairy.text}
-                  className="w-full aspect-square object-cover rounded-2xl shadow-2xl mb-4"
-                />
-                <p className="text-2xl">{fairy.text}</p>
-              </motion.div>
-            ))}
+            ].map((fairy, index) => {
+              // Logic: Even numbers (0, 2) come from Right. Odd numbers (1, 3) come from Left.
+              const comesFromRight = index % 2 === 0;
+
+              return (
+                <motion.div
+                  key={index}
+                  // Dynamic Initial State based on direction
+                  initial={{
+                    opacity: 0,
+                    x: comesFromRight ? 100 : -100, // 100 is Right, -100 is Left
+                    rotate: comesFromRight ? 5 : -5, // Slight tilt for style
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                    rotate: 0,
+                  }}
+                  transition={{
+                    duration: 1,
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 20,
+                  }}
+                  viewport={{ once: false, amount: 0.5 }} // Triggers as you scroll to each one
+                  className="flex flex-col items-center text-center w-full"
+                >
+                  <div className="relative group">
+                    {/* Glowing effect behind image */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+                    <img
+                      src={fairy.img}
+                      alt={fairy.text}
+                      className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl shadow-2xl border-2 border-white/20"
+                    />
+                  </div>
+                  <p className="mt-6 text-3xl font-serif text-purple-100">
+                    {fairy.text}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <div className="min-h-screen flex flex-col items-center justify-center gap-12">
+          {/* Happy Birthday Section */}
+          <div className="min-h-screen flex flex-col items-center justify-center gap-8 md:gap-12">
             <motion.h2
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, type: "spring" }}
+              initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              transition={{ duration: 1.5, type: "spring", bounce: 0.4 }}
               viewport={{ once: true }}
-              className="text-7xl md:text-9xl font-bold"
+              className="text-6xl md:text-9xl text-center font-serif font-black italic tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-r from-rose-200 via-purple-300 to-indigo-300 drop-shadow-[0_0_25px_rgba(192,132,252,0.6)]"
             >
-              Happy Birthday
+              Happy <br className="md:hidden" /> Birthday
             </motion.h2>
+
             <motion.img
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
+              initial={{ opacity: 0, y: 100, rotate: -10 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              transition={{ delay: 0.3, duration: 1, type: "spring" }}
               viewport={{ once: true }}
               src={ASSETS.images.cake}
               alt="Cake"
-              className="w-96 rounded-2xl shadow-2xl"
+              className="w-72 md:w-96 rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.2)] border-4 border-white/10"
             />
           </div>
 
-          <div className="min-h-screen flex flex-col items-center justify-center gap-12 px-4">
+          {/* Final Request & Button */}
+          <div className="min-h-screen flex flex-col items-center justify-center gap-12 px-4 pb-20">
             <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1 }}
+              initial={{ opacity: 0, y: 30, filter: "blur(5px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 2, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl text-center"
+              className="text-4xl md:text-6xl text-center font-serif italic tracking-wide leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-purple-100 to-pink-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
             >
               Always remain with me like this
             </motion.p>
+
             <motion.img
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 1.2 }}
               viewport={{ once: true }}
               src={ASSETS.images.finalCouple}
               alt="Us"
-              className="w-full max-w-3xl rounded-2xl shadow-2xl"
+              className="w-full max-w-2xl rounded-2xl shadow-2xl border border-white/10"
             />
+
             <motion.a
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
               viewport={{ once: true }}
               href="https://example.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 px-12 py-6 bg-white text-purple-900 text-2xl font-bold rounded-full hover:scale-110 transition-transform shadow-2xl"
+              // Updated button style to match the dark theme
+              className="mt-8 px-12 py-6 bg-white/10 backdrop-blur-md border border-white/30 text-white text-2xl font-bold rounded-full hover:bg-white hover:text-purple-900 hover:scale-110 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)]"
             >
               And finally...
             </motion.a>
