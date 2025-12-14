@@ -14,6 +14,7 @@ import secondMetImg from "./assets/second met.jpeg";
 import beautifulImg from "./assets/beautiful.jpg";
 import crush from "./assets/crush.jpeg";
 import loveImg from "./assets/love.jpg";
+import hbd from "./assets/hbd.webp";
 
 // Sequence / Best Photos
 import best1 from "./assets/best1.jpg";
@@ -69,6 +70,7 @@ const ASSETS = {
     best7: best7,
     best8: best8,
     best9: best9,
+    hbd: hbd,
     redFairy: redImg,
     blueFairy: blueImg,
     sleepingFairy: depressed,
@@ -737,7 +739,7 @@ export default function App() {
                   </motion.h3>
                 </div>
 
-                <div className="min-h-[60vh] flex items-center justify-center">
+                <div className="min-h-96 flex items-center justify-center">
                   <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -749,7 +751,7 @@ export default function App() {
                   </motion.p>
                 </div>
 
-                <div className="min-h-screen flex items-center justify-center py-12">
+                <div className="min-h-96 flex items-center justify-center py-12">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -807,7 +809,7 @@ export default function App() {
                     viewport={{ once: false, amount: 0.3 }}
                     className="text-3xl md:text-5xl text-center px-4 font-serif text-purple-900 drop-shadow-lg"
                   >
-                    Then slowly made me fall for you
+                    You slowly made me fall for you
                   </motion.p>
                 </div>
 
@@ -1034,23 +1036,14 @@ export default function App() {
                     >
                       {[
                         ASSETS.images.best1,
-                        ASSETS.images.best2,
                         ASSETS.images.best3,
-                        ASSETS.images.best4,
-                        ASSETS.images.best5,
-                        ASSETS.images.best6,
-                        ASSETS.images.best7,
-                        ASSETS.images.best8,
                         ASSETS.images.best9,
-                        ASSETS.images.best1,
                         ASSETS.images.best2,
-                        ASSETS.images.best3,
-                        ASSETS.images.best4,
-                        ASSETS.images.best5,
                         ASSETS.images.best6,
-                        ASSETS.images.best7,
+                        ASSETS.images.best5,
                         ASSETS.images.best8,
-                        ASSETS.images.best9,
+                        ASSETS.images.best4,
+                        ASSETS.images.best7,
                       ].map((img, index) => (
                         <div
                           key={index}
@@ -1140,14 +1133,14 @@ export default function App() {
                     viewport={{ once: true }}
                     className="text-6xl md:text-9xl text-center font-serif font-black italic tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-r from-rose-200 via-purple-300 to-indigo-300 drop-shadow-[0_0_25px_rgba(192,132,252,0.6)]"
                   >
-                    Happy <br className="md:hidden" /> Birthday
+                    from the deepest corner of my heart
                   </motion.h2>
                   <motion.img
                     initial={{ opacity: 0, y: 100, rotate: -10 }}
                     whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                     transition={{ delay: 0.3, duration: 1, type: "spring" }}
                     viewport={{ once: true }}
-                    src={ASSETS.images.cake}
+                    src={ASSETS.images.hbd}
                     alt="Cake"
                     className="w-72 md:w-96 rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.2)] border-4 border-white/10"
                   />
